@@ -25,10 +25,10 @@ function Restaurant(props) {
         <a target='_blank' href={url}>Yelp Page</a> 
       </div>
       <div>
-        <WishButton bool={wishList.bool} wishClick={() => props.wishClick()}/>
+        <WishButton bool={wishList.bool} wishClick={props.wishClick}/>
       </div>
       <div>
-        <VisitButton bool={visited.bool} visitClick={() => props.visitClick()}/>
+        <VisitButton bool={visited.bool} visitClick={props.visitClick}/>
       </div>
     </div>
   );

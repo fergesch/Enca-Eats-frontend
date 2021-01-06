@@ -7,7 +7,7 @@ function WishButton(props) {
         wishListImageUrl = heartFull;
     }
     
-    return(<img alt="heart" className="toggles" src={wishListImageUrl} onClick={() => props.wishClick()}/>);
+    return(<img alt="heart" className="toggles" src={wishListImageUrl} onClick={props.wishClick}/>);
 }
 
 export default WishButton;

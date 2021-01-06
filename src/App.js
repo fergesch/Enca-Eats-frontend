@@ -67,12 +67,12 @@ class App extends Component {
     }
   }
 
-  toggleWishList() {
+  toggleWishList = () => {
     const userInteractions = {...this.state.userInteractions};
     userInteractions.wishList = {"date": Date.now(), "bool": !userInteractions.wishList.bool};
     this.setState({"userInteractions": userInteractions})
   }
-  toggleVisit() {
+  toggleVisit = () => {
     const userInteractions = {...this.state.userInteractions};
     userInteractions.visited = {"date": Date.now(), "bool": !userInteractions.visited.bool};
     this.setState({"userInteractions": userInteractions})
@@ -83,7 +83,7 @@ class App extends Component {
       <div>
       {/* <div className="App"> */}
         <Header />
-        <Restaurant data={this.state.data} userInteractions={this.state.userInteractions} wishClick={() => this.toggleWishList()} visitClick={() => this.toggleVisit()}/>
+        <Restaurant data={this.state.data} userInteractions={this.state.userInteractions} wishClick={this.toggleWishList} visitClick={this.toggleVisit}/>
       {/* </div> */}
       </div>
     );

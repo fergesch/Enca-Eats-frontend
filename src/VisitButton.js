@@ -7,7 +7,7 @@ function VisitButton(props) {
         visitImageUrl = checkFull;
     }
     
-    return(<img alt="visit" className="toggles" src={visitImageUrl} onClick={() => props.visitClick()}/>);
+    return(<img alt="visit" className="toggles" src={visitImageUrl} onClick={props.visitClick}/>);
 }
 
 export default VisitButton;
