@@ -1,0 +1,17 @@
+.image{
+    height: 200px;
+    width: 200px;
+}
+
+.restaurant{
+    display:flex;
+    flex-direction:row;
+    line-height: 0.8;
+}
+
+.toggles{
+    height: 25px;
+    width: 25px;
+    fill: "blue";
+}
+
