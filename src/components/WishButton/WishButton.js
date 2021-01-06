@@ -1,5 +1,5 @@
-import heartEmpty from './assets/heart-regular.svg';
-import heartFull from './assets/heart-solid.svg';
+import heartEmpty from '../../assets/heart-regular.svg';
+import heartFull from '../../assets/heart-solid.svg';
 
 function WishButton(props) {
     let wishListImageUrl = heartEmpty;

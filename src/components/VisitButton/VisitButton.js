@@ -1,5 +1,5 @@
-import checkEmpty from './assets/square-regular.svg';
-import checkFull from './assets/check-square-regular.svg';
+import checkEmpty from '../../assets/square-regular.svg';
+import checkFull from '../../assets/check-square-regular.svg';
 
 function VisitButton(props) {
     let visitImageUrl = checkEmpty;

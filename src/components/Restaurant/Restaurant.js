@@ -1,6 +1,6 @@
 import "./Restaurant.css";
-import WishButton from "./WishButton"
-import VisitButton from "./VisitButton"
+import WishButton from "../WishButton/WishButton"
+import VisitButton from "../VisitButton/VisitButton"
 
 function Restaurant(props) {
 
