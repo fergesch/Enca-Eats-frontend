@@ -1,3 +1,6 @@
+# Asset Library
+[Font Awesome](https://fontawesome.com/) Download svgs and store in assets folder
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
