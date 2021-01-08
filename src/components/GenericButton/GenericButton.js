@@ -16,9 +16,10 @@ function GenericButton(props) {
         default:
             break;
     }
+
     
     // return(<img alt="visit" className="toggles" src={visitImageUrl} onClick={props.visitClick}/>);
-    return(<img alt={props.type} className="toggles" src={imageUrl} onClick={() => props.toggleHandler(props.type)}/>);
+    return(<img alt={props.type} className="toggles" src={imageUrl} onClick={() => props.toggleHandler(props.type, props.index)}/>);
 }
 
 export default GenericButton;
