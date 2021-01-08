@@ -3,6 +3,7 @@ import './App.css';
 import React, { Component } from 'react';
 import Header from '../components/Header/Header';
 import Restaurant from '../components/Restaurant/Restaurant';
+import SearchDropdowns from '../components/SearchDropdowns/SearchDropdowns'
 
 // function App() {
 class App extends Component {
@@ -61,35 +62,84 @@ class App extends Component {
         _ts: 1609705714
       },
       userInteractions: {
-        wishList: {date: "2021-01-01 10:18:44", bool: true},
+        wishList: { datetime: "2021-01-01 10:18:44", bool: true },
         visited: {},
-        notes: []}
+        notes: []
+      },
+      dropdown: {
+        neighborhoods: {
+          all: [
+            {alias: 'Gold Coast', title: 'Gold Coast'},
+            {alias: "Lake View", title: "Lake View"},
+            {alias: "Lincoln Park", title: "Lincoln Park"},
+            {alias: "Wrigleyville", title: "Wrigleyville"},
+          ],
+          selected: ''
+        },
+        category: {
+          all: [
+            { alias: "burgers", title: "Burgers" },
+            { alias: "bbq", title: "Barbeque" }],
+          selected: ''
+        },
+        rating: {
+          all: [
+            {alias: 0, title: 0},
+            {alias: 0.5, title: 0.5},
+            {alias: 1, title: 1},
+            {alias: 1.5, title: 1.5},
+            {alias: 2, title: 2},
+            {alias: 2.5, title: 2.5},
+            {alias: 3, title: 3},
+            {alias: 3.5, title: 3.5},
+            {alias: 4, title: 4},
+            {alias: 4.5, title: 4.5},
+            {alias: 5, title: 5},
+          ],
+          selected: ''
+        },
+        wishList: {
+          all: [
+            {alias: 'No', title: 'No'},
+            {alias: 'Yes', title: 'Yes'}
+          ],
+          selected: ''
+        }
+      }
     }
   }
 
-  toggleWishList = () => {
-    const userInteractions = {...this.state.userInteractions};
-    userInteractions.wishList = {date: Date.now(), bool: !userInteractions.wishList.bool};
-    this.setState({"userInteractions": userInteractions})
+  toggleHandler = (type) => {
+    let userInteractions = { ...this.state.userInteractions };
+    userInteractions[type] = { date: Date.now(), bool: !userInteractions[type]['bool'] };
+    this.setState({ userInteractions: userInteractions })
   }
 
-  toggleVisit = () => {
-    const userInteractions = {...this.state.userInteractions};
-    userInteractions.visited = {date: Date.now(), bool: !userInteractions.visited.bool};
-    this.setState({"userInteractions": userInteractions})
+  handleSelectChange = (event) => {
+    const target = event.target;
+    // const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.value;
+    const name = target.name;
+
+    let dropdown = { ...this.state.dropdown };
+    dropdown[name]['selected'] = value;
+    this.setState({ dropdown: dropdown });
   }
 
   render() {
     return (
+
       <div>
-      {/* <div className="App"> */}
+        {/* <div className="App"> */}
         <Header />
         <Restaurant
           data={this.state.data}
           userInteractions={this.state.userInteractions}
-          wishClick={this.toggleWishList}
-          visitClick={this.toggleVisit}/>
-      {/* </div> */}
+          toggleHandler={this.toggleHandler} />
+        <SearchDropdowns
+          dropdown={this.state.dropdown}
+          handleChange={this.handleSelectChange} />
+        {/* </div> */}
       </div>
     );
   }
