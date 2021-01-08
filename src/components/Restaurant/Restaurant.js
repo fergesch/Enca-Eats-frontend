@@ -1,10 +1,9 @@
 import "./Restaurant.css";
-import WishButton from "../WishButton/WishButton"
-import VisitButton from "../VisitButton/VisitButton"
+import GenericButton from "../GenericButton/GenericButton"
 
 function Restaurant(props) {
 
-    const { name, image_url, neighborhood, rating, url, categories, userInteractions} = props.data;
+    const { name, image_url, neighborhood, rating, url, categories, userInteractions} = props.restaurant;
     const { wishList, notes, visited } = userInteractions;
 
     let cat_titles = categories.map((cat) => {
@@ -22,10 +21,10 @@ function Restaurant(props) {
         <a target='_blank' href={url}>Yelp Page</a> 
       </div>
       <div>
-        <WishButton bool={wishList.bool} wishClick={props.wishClick}/>
+        <GenericButton type='wishList' bool={wishList.bool} toggleHandler={props.toggleHandler}/>
       </div>
       <div>
-        <VisitButton bool={visited.bool} visitClick={props.visitClick}/>
+        <GenericButton type='visited' bool={visited.bool} toggleHandler={props.toggleHandler}/>
       </div>
     </div>
   );

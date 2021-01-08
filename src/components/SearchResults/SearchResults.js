@@ -2,17 +2,18 @@ import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import ResultHeader from "../ResultHeader/ResultHeader";
 import React from "react";
 
-function SearchResults (props) {
+function SearchResults(props) {
 
     return (
         <div>
-            <ResultHeader/>
+            <ResultHeader />
             {
-                props.data.map((restaurant, index) => (
-                    <RestaurantCard data={restaurant}
-                                    wishClick={() => props.wishClick(index)}
-                                    visitClick={() => props.visitClick(index)}/>
-                                    ))}
+                props.restaurants.map((r, index) => (
+                    <RestaurantCard restaurant={r}
+                        index={index}
+                        toggleHandler={props.toggleHandler}
+                    />
+                ))}
 
         </div>
     );
