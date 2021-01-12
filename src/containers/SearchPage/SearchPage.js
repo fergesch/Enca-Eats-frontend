@@ -127,13 +127,13 @@ class SearchPage extends Component {
             { alias: "Lincoln Park", title: "Lincoln Park" },
             { alias: "Wrigleyville", title: "Wrigleyville" },
           ],
-          selected: ''
+          selected: []
         },
         category: {
           all: [
             { alias: "burgers", title: "Burgers" },
             { alias: "bbq", title: "Barbeque" }],
-          selected: ''
+          selected: []
         },
         rating: {
           all: [
@@ -149,14 +149,14 @@ class SearchPage extends Component {
             { alias: 4.5, title: 4.5 },
             { alias: 5, title: 5 },
           ],
-          selected: ''
+          selected: []
         },
         wishList: {
           all: [
             { alias: 'No', title: 'No' },
             { alias: 'Yes', title: 'Yes' }
           ],
-          selected: ''
+          selected: []
         }
       }
     }
@@ -181,6 +181,24 @@ class SearchPage extends Component {
     this.setState({ dropdown: dropdown });
   }
 
+  handleDelete = (event) => {
+    console.log('Delete Clicked')
+    const target = event.target;
+    const key = target.key;
+    const name = target.name;
+
+    let dropdown = { ...this.state.dropdown };
+
+    const index = dropdown[name]['selected'].indexOf(key);
+    if (index > -1) {
+      dropdown[name]['selected'].splice(index, 1);
+    }
+
+    
+
+    this.setState({ dropdown: dropdown });
+  }
+
   render() {
     return (
 
@@ -188,13 +206,14 @@ class SearchPage extends Component {
 
         <SearchDropdowns
           dropdown={this.state.dropdown}
-          handleChange={this.handleSelectChange} />
+          handleChange={this.handleSelectChange}
+          handleDelete={this.handleDelete} />
 
         <SearchResults
           restaurants={this.state.restaurants}
           toggleHandler={this.toggleHandler}
         />
-
+        {/* <p>{this.state.dropdown}</p> */}
       </div >
     );
   }
