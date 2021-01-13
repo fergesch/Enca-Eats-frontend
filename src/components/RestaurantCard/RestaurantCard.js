@@ -4,11 +4,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import React from "react";
-
+import { Link } from 'react-router-dom';
 
 function RestaurantCard(props) {
 
-    const { name, image_url, neighborhood, rating, url, categories, userInteractions} = props.restaurant;
+    const { alias, name, image_url, neighborhood, rating, url, categories, userInteractions } = props.restaurant;
     const { wishList, notes, visited } = userInteractions;
 
     let cat_titles = categories.map((cat) => {
@@ -19,7 +19,15 @@ function RestaurantCard(props) {
         <Container className="restaurantCard" fluid>
             <Row className="restaurantRow">
                 <Col><img alt="yelpPic" className="thumbnail" src={image_url} /></Col>
-                <Col>{name}</Col>
+                <Col>
+                    <Link to={{
+                        pathname: '/restaurant',
+                        // hash: '#submit',
+                        search: '?alias=' + alias
+                    }}>
+                        {name}
+                    </Link>
+                </Col>
                 <Col>{neighborhood}</Col>
                 <Col>{rating}</Col>
                 <Col>{cat_titles.join(", ")}</Col>
