@@ -4,12 +4,15 @@
 }
 
 .restaurantCard {
-    border: 2px solid gray;
-    padding: 2px;
+    display: flex;
+    padding-bottom: 5px;
 }
 
-.restaurantRow {
-    border-collapse: separate;
-    border-spacing: 0 10px;
-    padding-bottom: 10px;
+.restaurantCard > div {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    padding: 5px;
 }

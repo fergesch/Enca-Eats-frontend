@@ -14,14 +14,15 @@ li {
 }
 
 /* .Blog a { */
-a {
+.NavHeader a {
     text-decoration: none;
-    color: black;
+    color: #282c34;
 }
+
 
 /* .Blog a:hover,
 .Blog a:active { */
-a:hover,
-a:active {
-    color: #fa923f;
+.NavHeader a:hover,
+.NavHeader a:active {
+    color: #61dafb;
 }
