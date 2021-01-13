@@ -157,6 +157,22 @@ class SearchPage extends Component {
             { alias: 'Yes', title: 'Yes' }
           ],
           selected: []
+        },
+        visited: {
+          all: [
+            { alias: 'No', title: 'No' },
+            { alias: 'Yes', title: 'Yes' }
+          ],
+          selected: []
+        },
+        price: {
+          all: [
+            { alias: '$', title: '$' },
+            { alias: '$$', title: '$$' },
+            { alias: '$$$', title: '$$$' },
+            { alias: '$$$$', title: '$$$$' },
+          ],
+          selected: []
         }
       }
     }
