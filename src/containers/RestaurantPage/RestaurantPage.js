@@ -65,6 +65,16 @@ class RestaurantPage extends Component {
     }
   }
 
+  componentDidMount(){
+    console.log(this.props)
+    console.log(this.props.location.search)
+    for(let element of new URLSearchParams(this.props.location.search).entries()){
+      console.log(element)
+      // each element is an array with 2 values [alias, value]
+      // we can iterate through to build the backend search request in the searchpage component
+    }
+  }
+
   toggleHandler = (type) => {
     let restaurants = {...this.state.restaurants};
     // let restaurant = restaurants[index];
