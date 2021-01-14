@@ -1,24 +1,3 @@
-// import logo from "../../assets/logo.svg";
-
-// function Header() {
-//   return (
-//     <header className="App-header">
-//       {/* <img src={logo} className="App-logo" alt="logo" /> */}
-//       <p>
-//         Edit <code>src/App.js</code> and save to reload.
-//       </p>
-//       <a
-//         className="App-link"
-//         href="https://reactjs.org"
-//         target="_blank"
-//         rel="noopener noreferrer"
-//       >
-//         Learn React
-//       </a>
-//     </header>
-//   );
-// }
-
 // export default Header;
 
 // import React from "react";
@@ -61,6 +40,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {Link} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,17 +60,31 @@ function Header() {
 
   return (
 
-    <AppBar position="static">
-    <Toolbar>
-      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-        <MenuIcon />
-      </IconButton>
-      <Typography variant="h6" className={classes.title}>
-        Enca Eats
-      </Typography>
-      <Button color="inherit">Login</Button>
-    </Toolbar>
-    </AppBar>
+    <header>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/restaurant">Restaurant</Link></li>
+          {/* <li><Link to={{
+            pathname: '/restaurant',
+            hash: '#submit',
+            search: '?quick-submit=true'
+          }}>Restaurant</Link></li> */}
+        </ul>
+      </nav>
+    </header>
+
+    // <AppBar position="static">
+    // <Toolbar>
+    //   <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+    //     <MenuIcon />
+    //   </IconButton>
+    //   <Typography variant="h6" className={classes.title}>
+    //     Enca Eats
+    //   </Typography>
+    //   <Button color="inherit">Login</Button>
+    // </Toolbar>
+    // </AppBar>
   );
 }
 
