@@ -1,23 +1,18 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
 import './ResultsHeader.css'
 
 
 function ResultHeader () {
     return (
-        <Container className="resultHeader" fluid>
-            <Row>
-                <Col>Image</Col>
-                <Col>Name</Col>
-                <Col>Neighborhood</Col>
-                <Col>Yelp Rating</Col>
-                <Col>Categories</Col>
-                <Col>Yelp Page</Col>
-                <Col>Wish List</Col>
-                <Col>Saved</Col>
-            </Row>
-        </Container>
+        <div className="resultHeader" >
+                <div>Image</div>
+                <div>Name</div>
+                <div>Neighborhood</div>
+                <div>Yelp Rating</div>
+                <div>Categories</div>
+                <div>Yelp Page</div>
+                <div>Wish List</div>
+                <div>Saved</div>
+        </div>
     );
 }
 
