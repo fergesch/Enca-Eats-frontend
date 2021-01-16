@@ -5,7 +5,9 @@ function Restaurant(props) {
 
     const { name, image_url, neighborhood, rating, url, categories, userInteractions} = props.restaurant;
     const { wishList, notes, visited } = userInteractions;
-
+    
+    console.log(notes);
+    
     let cat_titles = categories.map((cat) => {
         return cat.title;
     });
@@ -18,7 +20,7 @@ function Restaurant(props) {
         <p>{neighborhood}</p>
         <p>Yelp Rating: {rating}</p>
         <p>Categories: {cat_titles.join(", ")}</p>
-        <a target='_blank' href={url}>Yelp Page</a> 
+        <a target='_blank' rel="noreferrer" href={url}>Yelp Page</a> 
       </div>
       <div>
         <GenericButton type='wishList' bool={wishList.bool} toggleHandler={props.toggleHandler}/>
