@@ -3,7 +3,7 @@ name: JavaScript CI
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   AZURE_WEBAPP_NAME: enca-eats   # set this to your application's name
