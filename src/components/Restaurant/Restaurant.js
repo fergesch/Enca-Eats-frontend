@@ -20,7 +20,7 @@ function Restaurant(props) {
         <p>{neighborhood}</p>
         <p>Yelp Rating: {rating}</p>
         <p>Categories: {cat_titles.join(", ")}</p>
-        <a target='_blank' href={url}>Yelp Page</a> 
+        <a target='_blank' rel="noreferrer" href={url}>Yelp Page</a> 
       </div>
       <div>
         <GenericButton type='wishList' bool={wishList.bool} toggleHandler={props.toggleHandler}/>
