@@ -4,7 +4,7 @@ import GenericButton from "../GenericButton/GenericButton"
 function Restaurant(props) {
 
     const { name, image_url, neighborhood, rating, url, categories, userInteractions} = props.restaurant;
-    const { wishList, notes, visited } = userInteractions;
+    const { wish_list, notes, visited } = userInteractions;
     
     console.log(notes);
     
@@ -23,7 +23,7 @@ function Restaurant(props) {
         <a target='_blank' rel="noreferrer" href={url}>Yelp Page</a> 
       </div>
       <div>
-        <GenericButton type='wishList' bool={wishList.bool} toggleHandler={props.toggleHandler}/>
+        <GenericButton type='wish_list' bool={wish_list.bool} toggleHandler={props.toggleHandler}/>
       </div>
       <div>
         <GenericButton type='visited' bool={visited.bool} toggleHandler={props.toggleHandler}/>
