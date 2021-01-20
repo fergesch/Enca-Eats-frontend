@@ -32,4 +32,4 @@ jobs:
         app-name: 'enca-eats'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8ac6b566ef7c41d19b309842e679a00a }}
-        package: .
+        package: build
