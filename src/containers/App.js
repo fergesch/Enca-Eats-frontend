@@ -8,7 +8,6 @@ import RestaurantPage from './RestaurantPage/RestaurantPage';
 import { BrowserRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
-// function App() {
 class App extends Component {
 
   render() {

@@ -10,7 +10,7 @@ function GenericButton(props) {
         case 'visited':
             imageUrl = props.bool ? checkFull : checkEmpty;
             break;
-        case 'wishList':
+        case 'wish_list':
             imageUrl = props.bool ? heartFull : heartEmpty;
             break;
         default:
