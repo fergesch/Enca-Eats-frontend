@@ -58,7 +58,7 @@ class SearchPage extends Component {
         _attachments: "attachments/",
         _ts: 1609705714,
         userInteractions: {
-          wishList: { date: "2021-01-01 10:18:44", bool: true },
+          wish_list: { date: "2021-01-01 10:18:44", bool: true },
           visited: {},
           notes: []
         }
@@ -114,7 +114,7 @@ class SearchPage extends Component {
         _attachments: "attachments/",
         _ts: 1609705714,
         userInteractions: {
-          wishList: { date: "2021-01-01 10:18:44", bool: false },
+          wish_list: { date: "2021-01-01 10:18:44", bool: false },
           visited: {},
           notes: []
         }
@@ -151,7 +151,7 @@ class SearchPage extends Component {
           ],
           selected: []
         },
-        wishList: {
+        wish_list: {
           all: [
             { alias: 'No', title: 'No' },
             { alias: 'Yes', title: 'Yes' }

@@ -14,7 +14,7 @@ function RestaurantCard(props) {
     categories,
     userInteractions,
   } = props.restaurant;
-  const {wishList, notes, visited} = userInteractions;
+  const {wish_list, notes, visited} = userInteractions;
 
   console.log(notes)
 
@@ -57,8 +57,8 @@ function RestaurantCard(props) {
       <div>
         <GenericButton
           index={props.index}
-          type="wishList"
-          bool={wishList.bool}
+          type="wish_list"
+          bool={wish_list.bool}
           toggleHandler={props.toggleHandler}
         />
       </div>
