@@ -31,6 +31,5 @@ jobs:
       with:
         app-name: 'enca-eats'
         slot-name: 'production'
-        startup-command: pm2 serve /home/site/wwwroot --no-daemon --spa
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: build
