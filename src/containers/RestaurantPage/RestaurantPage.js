@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Restaurant from "../../components/Restaurant/Restaurant";
-import axios from "axios";
+// import axios from "axios";
+import API from '../../utils/Api';
 
 class RestaurantPage extends Component {
   state = {
@@ -42,13 +43,9 @@ class RestaurantPage extends Component {
     }
     console.log(param_map);
 
-    axios
-      .get("https://enca-eats-backend.azurewebsites.net/restaurant", {
-        params: param_map,
-        headers: {
-          // 'Content-Type': null,
-          "Access-Control-Allow-Origin": "*",
-        },
+    API
+      .get("/restaurant", {
+        params: param_map
       })
       .then(response => {
         console.log(response.data);
