@@ -1,190 +1,101 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
+import Button from "@material-ui/core/Button";
 import SearchResults from "../../components/SearchResults/SearchResults";
-import SearchDropdowns from '../../components/SearchDropdowns/SearchDropdowns'
+import SearchDropdowns from "../../components/SearchDropdowns/SearchDropdowns";
+import API from "../../utils/Api";
+import {sortString, isObjEqual} from "../../utils/Utils";
+import {toggleUserInteraction} from '../../utils/ChangeHandlers';
 
-// function App() {
 class SearchPage extends Component {
-  constructor() {
-    super()
-    this.state = {
-      restaurants: [{
-        id: "TAueIovlJFslHSVEfnAaaA",
-        alias: "dryhop-brewers-chicago",
-        name: "DryHop Brewers",
-        image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Eb0McDi48qWYhPnIaK8i-Q/o.jpg",
-        is_closed: false,
-        url: "https://www.yelp.com/biz/dryhop-brewers-chicago?adjust_creative=ZzZ3ffcKnwQmN827qh1vKw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=ZzZ3ffcKnwQmN827qh1vKw",
-        review_count: 771,
-        categories: [
-          {
-            alias: "breweries",
-            title: "Breweries"
-          },
-          {
-            alias: "newamerican",
-            title: "American (New)"
-          }
-        ],
-        rating: 4,
-        coordinates: {
-          latitude: 41.9392443174878,
-          longitude: -87.6442063962951
-        },
-        transactions: [
-          "delivery",
-          "pickup"
-        ],
-        price: "$$",
-        location: {
-          address1: "3155 N Broadway",
-          address2: "",
-          address3: "",
-          city: "Chicago",
-          zip_code: "60657",
-          country: "US",
-          state: "IL",
-          display_address: [
-            "3155 N Broadway",
-            "Chicago, IL 60657"
-          ]
-        },
-        phone: "+17738573155",
-        display_phone: "(773) 857-3155",
-        distance: 4698.23608916659,
-        neighborhood: "Lake View",
-        _rid: "tJleAOrMycgxCAAAAAAAAA==",
-        _self: "dbs/tJleAA==/colls/tJleAOrMycg=/docs/tJleAOrMycgxCAAAAAAAAA==/",
-        _etag: "\"bd01f2de-0000-0300-0000-5ff228f20000\"",
-        _attachments: "attachments/",
-        _ts: 1609705714,
-        userInteractions: {
-          wish_list: { date: "2021-01-01 10:18:44", bool: true },
-          visited: {},
-          notes: []
-        }
+  state = {
+    restaurants: [],
+    restaurants_display: [],
+    filters: {},
+    dropdown: {
+      neighborhoods: {
+        all: [],
+        selected: [],
+        type: "multiple",
       },
-      {
-        id: "TAueIovlJFslHSVEfnAaaA",
-        alias: "dryhop-brewers-chicago",
-        name: "DryHop Brewers",
-        image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Eb0McDi48qWYhPnIaK8i-Q/o.jpg",
-        is_closed: false,
-        url: "https://www.yelp.com/biz/dryhop-brewers-chicago?adjust_creative=ZzZ3ffcKnwQmN827qh1vKw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=ZzZ3ffcKnwQmN827qh1vKw",
-        review_count: 771,
-        categories: [
-          {
-            alias: "breweries",
-            title: "Breweries"
-          },
-          {
-            alias: "newamerican",
-            title: "American (New)"
-          }
+      categories: {
+        all: [],
+        selected: [],
+        type: "multiple",
+      },
+      rating: {
+        all: [
+          {alias: 0, title: 0},
+          {alias: 0.5, title: 0.5},
+          {alias: 1, title: 1},
+          {alias: 1.5, title: 1.5},
+          {alias: 2, title: 2},
+          {alias: 2.5, title: 2.5},
+          {alias: 3, title: 3},
+          {alias: 3.5, title: 3.5},
+          {alias: 4, title: 4},
+          {alias: 4.5, title: 4.5},
+          {alias: 5, title: 5},
         ],
-        rating: 4,
-        coordinates: {
-          latitude: 41.9392443174878,
-          longitude: -87.6442063962951
-        },
-        transactions: [
-          "delivery",
-          "pickup"
+        selected: [],
+        type: "single",
+      },
+      wish_list: {
+        all: [
+          {alias: "No", title: "No"},
+          {alias: "Yes", title: "Yes"},
         ],
-        price: "$$",
-        location: {
-          address1: "3155 N Broadway",
-          address2: "",
-          address3: "",
-          city: "Chicago",
-          zip_code: "60657",
-          country: "US",
-          state: "IL",
-          display_address: [
-            "3155 N Broadway",
-            "Chicago, IL 60657"
-          ]
-        },
-        phone: "+17738573155",
-        display_phone: "(773) 857-3155",
-        distance: 4698.23608916659,
-        neighborhood: "Lake View",
-        _rid: "tJleAOrMycgxCAAAAAAAAA==",
-        _self: "dbs/tJleAA==/colls/tJleAOrMycg=/docs/tJleAOrMycgxCAAAAAAAAA==/",
-        _etag: "\"bd01f2de-0000-0300-0000-5ff228f20000\"",
-        _attachments: "attachments/",
-        _ts: 1609705714,
-        userInteractions: {
-          wish_list: { date: "2021-01-01 10:18:44", bool: false },
-          visited: {},
-          notes: []
-        }
-      }],
-      dropdown: {
-        neighborhoods: {
-          all: [
-            { alias: 'Gold Coast', title: 'Gold Coast' },
-            { alias: "Lake View", title: "Lake View" },
-            { alias: "Lincoln Park", title: "Lincoln Park" },
-            { alias: "Wrigleyville", title: "Wrigleyville" },
-          ],
-          selected: []
-        },
-        category: {
-          all: [
-            { alias: "burgers", title: "Burgers" },
-            { alias: "bbq", title: "Barbeque" }],
-          selected: []
-        },
-        rating: {
-          all: [
-            { alias: 0, title: 0 },
-            { alias: 0.5, title: 0.5 },
-            { alias: 1, title: 1 },
-            { alias: 1.5, title: 1.5 },
-            { alias: 2, title: 2 },
-            { alias: 2.5, title: 2.5 },
-            { alias: 3, title: 3 },
-            { alias: 3.5, title: 3.5 },
-            { alias: 4, title: 4 },
-            { alias: 4.5, title: 4.5 },
-            { alias: 5, title: 5 },
-          ],
-          selected: []
-        },
-        wish_list: {
-          all: [
-            { alias: 'No', title: 'No' },
-            { alias: 'Yes', title: 'Yes' }
-          ],
-          selected: []
-        },
-        visited: {
-          all: [
-            { alias: 'No', title: 'No' },
-            { alias: 'Yes', title: 'Yes' }
-          ],
-          selected: []
-        },
-        price: {
-          all: [
-            { alias: '$', title: '$' },
-            { alias: '$$', title: '$$' },
-            { alias: '$$$', title: '$$$' },
-            { alias: '$$$$', title: '$$$$' },
-          ],
-          selected: []
-        }
-      }
+        selected: [],
+        type: "single",
+      },
+      visited: {
+        all: [
+          {alias: "No", title: "No"},
+          {alias: "Yes", title: "Yes"},
+        ],
+        selected: [],
+        type: "single",
+      },
+      price: {
+        all: [
+          {alias: "$", title: "$"},
+          {alias: "$$", title: "$$"},
+          {alias: "$$$", title: "$$$"},
+          {alias: "$$$$", title: "$$$$"},
+        ],
+        selected: [],
+        type: "multiple",
+      },
+    },
+  };
+
+  componentDidMount() {
+    let dropdown = {...this.state.dropdown};
+
+    function getNeighborhoods() {
+      return API.get("/neighborhood");
     }
+
+    function getCategories() {
+      return API.get("/categories");
+    }
+
+    Promise.all([getNeighborhoods(), getCategories()]).then((results) => {
+      const neighborhoods = results[0].data;
+      const categories = results[1].data;
+      dropdown.neighborhoods.all = neighborhoods.sort(sortString);
+      dropdown.categories.all = categories.sort(sortString);
+
+      this.setState({dropdown: dropdown});
+    });
   }
 
   toggleHandler = (type, i) => {
-    const index = (typeof i == "undefined") ? 0 : i;
+    const index = typeof i == "undefined" ? 0 : i;
     let restaurants = [...this.state.restaurants];
     let restaurant = restaurants[index];
-    restaurant.userInteractions[type] = { date: Date.now(), bool: !restaurant.userInteractions[type]['bool'] };
-    this.setState({ restaurants: restaurants });
-  }
+    toggleUserInteraction(restaurant, type)
+    this.setState({restaurants: restaurants});
+  };
 
   handleSelectChange = (event) => {
     const target = event.target;
@@ -192,45 +103,99 @@ class SearchPage extends Component {
     const value = target.value;
     const name = target.name;
 
-    let dropdown = { ...this.state.dropdown };
-    dropdown[name]['selected'] = value;
-    this.setState({ dropdown: dropdown });
-  }
+    let dropdown = {...this.state.dropdown};
+    dropdown[name]["selected"] = value;
+    this.setState({dropdown: dropdown});
+  };
 
   handleDelete = (event) => {
-    console.log('Delete Clicked')
+    console.log("Delete Clicked");
     const target = event.target;
     const key = target.key;
     const name = target.name;
 
-    let dropdown = { ...this.state.dropdown };
+    let dropdown = {...this.state.dropdown};
 
-    const index = dropdown[name]['selected'].indexOf(key);
+    const index = dropdown[name]["selected"].indexOf(key);
     if (index > -1) {
-      dropdown[name]['selected'].splice(index, 1);
+      dropdown[name]["selected"].splice(index, 1);
     }
 
-    
+    this.setState({dropdown: dropdown});
+  };
 
-    this.setState({ dropdown: dropdown });
-  }
+  handleSearch = () => {
+    let rest_amt = 3;
+    const keys = Object.keys(this.state.dropdown);
+    let param_map = {};
+
+    keys.map((key, index) => {
+      const all_list = this.state["dropdown"][key]["selected"];
+      if (all_list.length > 0) {
+        param_map[key] = all_list.join();
+      }
+      return true;
+    });
+    
+    if (
+      isObjEqual(param_map, this.state.filters) &&
+      this.state.restaurants.length >= rest_amt
+    ) {
+      let rest_all = [...this.state.restaurants];
+      let rest_disp = [];
+      for (let i = 0; i < rest_amt; i++) {
+        let rand = Math.floor(Math.random() * rest_all.length);
+        rest_disp[rest_disp.length] = rest_all.splice(rand, 1)[0];
+      }
+      this.setState({
+        restaurants: rest_all,
+        restaurants_display: rest_disp,
+      });
+    } else {
+      this.setState({filters: param_map});
+
+      API.get("/restaurant/search", {
+        params: param_map,
+      })
+        .then((response) => {
+          let rest_all = [...response.data];
+          let rest_disp = [];
+          for (let i = 0; i < rest_amt; i++) {
+            let rand = Math.floor(Math.random() * rest_all.length);
+            rest_disp[rest_disp.length] = rest_all.splice(rand, 1)[0];
+          }
+
+          this.setState({
+            restaurants: rest_all,
+            restaurants_display: rest_disp,
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+    }
+    return true;
+  };
 
   render() {
     return (
-
       <div>
-
         <SearchDropdowns
           dropdown={this.state.dropdown}
           handleChange={this.handleSelectChange}
-          handleDelete={this.handleDelete} />
-
+          handleDelete={this.handleDelete}
+        />
+        <Button variant="contained" color="primary" onClick={this.handleSearch}>
+          Search
+        </Button>
         <SearchResults
-          restaurants={this.state.restaurants}
+          restaurants={this.state.restaurants_display}
           toggleHandler={this.toggleHandler}
         />
-        {/* <p>{this.state.dropdown}</p> */}
-      </div >
+      </div>
     );
   }
 }
