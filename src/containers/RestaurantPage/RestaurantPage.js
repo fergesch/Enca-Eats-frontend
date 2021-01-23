@@ -38,17 +38,14 @@ class RestaurantPage extends Component {
   componentDidMount() {
     let param_map = {};
     for (let element of new URLSearchParams(this.props.location.search).entries()) {
-      console.log(element);
       param_map[element[0]] = element[1];
     }
-    console.log(param_map);
 
     API
       .get("/restaurant", {
         params: param_map
       })
       .then(response => {
-        console.log(response.data);
         this.setState({restaurants: response.data});
       })
       .catch(function (error) {
