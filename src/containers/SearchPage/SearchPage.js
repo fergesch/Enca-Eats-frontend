@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import SearchResults from "../../components/SearchResults/SearchResults";
 import SearchDropdowns from "../../components/SearchDropdowns/SearchDropdowns";
 import API from "../../utils/Api";
+import {toggleUserInteraction} from '../../utils/ChangeHandlers';
 
 // function App() {
 class SearchPage extends Component {
@@ -54,7 +55,7 @@ class SearchPage extends Component {
         _attachments: "attachments/",
         _ts: 1609705714,
         userInteractions: {
-          wish_list: {date: "2021-01-01 10:18:44", bool: true},
+          wish_list: {},
           visited: {},
           notes: [],
         },
@@ -106,9 +107,14 @@ class SearchPage extends Component {
         _attachments: "attachments/",
         _ts: 1609705714,
         userInteractions: {
-          wish_list: {date: "2021-01-01 10:18:44", bool: false},
-          visited: {},
-          notes: [],
+          user_id:"test_user_id",
+          rest_alias: "dryhop-brewers-chicago",
+          wish_list:{datetime:1610415400221,bool:true},
+          visited:{datetime:1610415440697,"bool":true},
+          notes:[{datetime:1610243753000,value:"here is a sample first review"},
+            {datetime:1610243763000,value:"adding a review from the endpoint"},
+            {datetime:1610313738000,value:"this is a second note on the same restaurant"}],
+          id:"0e5f171a-2d9c-4497-972b-25f2a8a1c934"
         },
       },
     ],
@@ -210,10 +216,7 @@ class SearchPage extends Component {
     const index = typeof i == "undefined" ? 0 : i;
     let restaurants = [...this.state.restaurants];
     let restaurant = restaurants[index];
-    restaurant.userInteractions[type] = {
-      date: Date.now(),
-      bool: !restaurant.userInteractions[type]["bool"],
-    };
+    toggleUserInteraction(restaurant, type)
     this.setState({restaurants: restaurants});
   };
 
