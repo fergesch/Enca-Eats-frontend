@@ -4,8 +4,8 @@ import SearchResults from "../../components/SearchResults/SearchResults";
 import SearchDropdowns from "../../components/SearchDropdowns/SearchDropdowns";
 import API from "../../utils/Api";
 import {sortString, isObjEqual} from "../../utils/Utils";
+import {toggleUserInteraction} from '../../utils/ChangeHandlers';
 
-// function App() {
 class SearchPage extends Component {
   state = {
     restaurants: [],
@@ -93,10 +93,7 @@ class SearchPage extends Component {
     const index = typeof i == "undefined" ? 0 : i;
     let restaurants = [...this.state.restaurants];
     let restaurant = restaurants[index];
-    restaurant.userInteractions[type] = {
-      date: Date.now(),
-      bool: !restaurant.userInteractions[type]["bool"],
-    };
+    toggleUserInteraction(restaurant, type)
     this.setState({restaurants: restaurants});
   };
 
@@ -198,7 +195,6 @@ class SearchPage extends Component {
           restaurants={this.state.restaurants_display}
           toggleHandler={this.toggleHandler}
         />
-        {/* <p>{this.state.dropdown}</p> */}
       </div>
     );
   }

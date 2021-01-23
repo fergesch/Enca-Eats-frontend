@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Restaurant from "../../components/Restaurant/Restaurant";
 // import axios from "axios";
 import API from '../../utils/Api';
+import {toggleUserInteraction} from '../../utils/ChangeHandlers';
 
 class RestaurantPage extends Component {
   state = {
@@ -58,11 +59,7 @@ class RestaurantPage extends Component {
 
   toggleHandler = (type) => {
     let restaurants = {...this.state.restaurants};
-    // let restaurant = restaurants[index];
-    restaurants.userInteractions[type] = {
-      date: Date.now(),
-      bool: !restaurants.userInteractions[type]["bool"],
-    };
+    toggleUserInteraction(restaurants, type)
     this.setState({restaurants: restaurants});
   };
 
