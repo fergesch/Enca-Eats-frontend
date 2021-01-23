@@ -27,3 +27,12 @@ export function isObjEqual(obj1, obj2) {
 
   return true;
 }
+
+export function findTitleFromAlias(array, value) {
+  for(var i = 0; i < array.length; i += 1) {
+      if(array[i]['alias'] === value) {
+          return array[i]['title'];
+      }
+  }
+  return null;
+}

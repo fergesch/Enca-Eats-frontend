@@ -4,7 +4,8 @@ import SearchResults from "../../components/SearchResults/SearchResults";
 import SearchDropdowns from "../../components/SearchDropdowns/SearchDropdowns";
 import API from "../../utils/Api";
 import {sortString, isObjEqual} from "../../utils/Utils";
-import {toggleUserInteraction} from '../../utils/ChangeHandlers';
+import {toggleUserInteraction} from "../../utils/ChangeHandlers";
+import "./SearchPage.css";
 
 class SearchPage extends Component {
   state = {
@@ -24,6 +25,7 @@ class SearchPage extends Component {
       },
       rating: {
         all: [
+          {alias: null, title: null},
           {alias: 0, title: 0},
           {alias: 0.5, title: 0.5},
           {alias: 1, title: 1},
@@ -36,23 +38,25 @@ class SearchPage extends Component {
           {alias: 4.5, title: 4.5},
           {alias: 5, title: 5},
         ],
-        selected: [],
+        selected: "",
         type: "single",
       },
       wish_list: {
         all: [
+          {alias: null, title: null},
           {alias: "No", title: "No"},
           {alias: "Yes", title: "Yes"},
         ],
-        selected: [],
+        selected: "",
         type: "single",
       },
       visited: {
         all: [
+          {alias: null, title: null},
           {alias: "No", title: "No"},
           {alias: "Yes", title: "Yes"},
         ],
-        selected: [],
+        selected: "",
         type: "single",
       },
       price: {
@@ -91,10 +95,10 @@ class SearchPage extends Component {
 
   toggleHandler = (type, i) => {
     const index = typeof i == "undefined" ? 0 : i;
-    let restaurants = [...this.state.restaurants];
+    let restaurants = [...this.state.restaurants_display];
     let restaurant = restaurants[index];
-    toggleUserInteraction(restaurant, type)
-    this.setState({restaurants: restaurants});
+    toggleUserInteraction(restaurant, type);
+    this.setState({restaurants_display: restaurants});
   };
 
   handleSelectChange = (event) => {
@@ -132,11 +136,15 @@ class SearchPage extends Component {
     keys.map((key, index) => {
       const all_list = this.state["dropdown"][key]["selected"];
       if (all_list.length > 0) {
-        param_map[key] = all_list.join();
+        if (typeof all_list === "string") {
+          param_map[key] = all_list;
+        } else {
+          param_map[key] = all_list.join();
+        }
       }
       return true;
     });
-    
+
     if (
       isObjEqual(param_map, this.state.filters) &&
       this.state.restaurants.length >= rest_amt
@@ -182,7 +190,7 @@ class SearchPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="SearchPage">
         <SearchDropdowns
           dropdown={this.state.dropdown}
           handleChange={this.handleSelectChange}
