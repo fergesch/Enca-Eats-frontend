@@ -26,17 +26,17 @@ class SearchPage extends Component {
       rating: {
         all: [
           {alias: null, title: null},
-          {alias: 0, title: 0},
-          {alias: 0.5, title: 0.5},
-          {alias: 1, title: 1},
-          {alias: 1.5, title: 1.5},
-          {alias: 2, title: 2},
-          {alias: 2.5, title: 2.5},
-          {alias: 3, title: 3},
-          {alias: 3.5, title: 3.5},
-          {alias: 4, title: 4},
-          {alias: 4.5, title: 4.5},
-          {alias: 5, title: 5},
+          {alias: "0", title: "0"},
+          {alias: "0.5", title: "0.5"},
+          {alias: "1", title: "1"},
+          {alias: "1.5", title: "1.5"},
+          {alias: "2", title: "2"},
+          {alias: "2.5", title: "2.5"},
+          {alias: "3", title: "3"},
+          {alias: "3.5", title: "3.5"},
+          {alias: "4", title: "4"},
+          {alias: "4.5", title: "4.5"},
+          {alias: "5", title: "5"},
         ],
         selected: "",
         type: "single",
@@ -44,8 +44,8 @@ class SearchPage extends Component {
       wish_list: {
         all: [
           {alias: null, title: null},
-          {alias: "No", title: "No"},
-          {alias: "Yes", title: "Yes"},
+          {alias: "false", title: "No"},
+          {alias: "true", title: "Yes"},
         ],
         selected: "",
         type: "single",
@@ -53,8 +53,8 @@ class SearchPage extends Component {
       visited: {
         all: [
           {alias: null, title: null},
-          {alias: "No", title: "No"},
-          {alias: "Yes", title: "Yes"},
+          {alias: "false", title: "No"},
+          {alias: "true", title: "Yes"},
         ],
         selected: "",
         type: "single",
@@ -168,7 +168,7 @@ class SearchPage extends Component {
         .then((response) => {
           let rest_all = [...response.data];
           let rest_disp = [];
-          for (let i = 0; i < rest_amt; i++) {
+          for (let i = 0; i < rest_amt && rest_all.length > 0; i++) {
             let rand = Math.floor(Math.random() * rest_all.length);
             rest_disp[rest_disp.length] = rest_all.splice(rand, 1)[0];
           }
@@ -180,6 +180,7 @@ class SearchPage extends Component {
         })
         .catch(function (error) {
           console.log(error);
+          alert("No restaurants found. Try again :(")
         })
         .then(function () {
           // always executed
