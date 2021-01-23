@@ -25,7 +25,7 @@ class SearchPage extends Component {
       },
       rating: {
         all: [
-          {alias: null, title: null},
+          {alias: "", title: ""},
           {alias: "0", title: "0"},
           {alias: "0.5", title: "0.5"},
           {alias: "1", title: "1"},
@@ -43,7 +43,7 @@ class SearchPage extends Component {
       },
       wish_list: {
         all: [
-          {alias: null, title: null},
+          {alias: "", title: ""},
           {alias: "false", title: "No"},
           {alias: "true", title: "Yes"},
         ],
@@ -52,7 +52,7 @@ class SearchPage extends Component {
       },
       visited: {
         all: [
-          {alias: null, title: null},
+          {alias: "", title: ""},
           {alias: "false", title: "No"},
           {alias: "true", title: "Yes"},
         ],
