@@ -1,0 +1,27 @@
+.noteCard {
+  /* display: flex; */
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  /* padding-bottom: 100px; */
+  border: 2px solid gray;
+  border: 2px solid gray;
+  width: 75%;
+}
+
+.noteCard > div {
+  width: 100%;
+  font-size: medium;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.noteText {
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 95%;
+}
+
+.noteButtons > button {
+  margin-right: 5px;
+}
