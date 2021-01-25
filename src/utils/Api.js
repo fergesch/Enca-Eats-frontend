@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'https://enca-eats-backend.azurewebsites.net',
+    baseURL: process.env.REACT_APP_BACKEND_URL,
     headers: {
         // 'Content-Type': null,
         "Access-Control-Allow-Origin": "*",
