@@ -1,0 +1,28 @@
+.row {
+    display: flex;
+    width: 100%;
+    border-spacing:10px;
+
+}
+
+.container {
+    width: 100%;
+    position: absolute;
+    border-spacing:10px;
+}
+
+.box {
+    width: 50%;
+    border: 2px solid gray;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.box > p {
+    font-weight: normal;
+    font-size: 15px;
+    text-align: left;
+}
