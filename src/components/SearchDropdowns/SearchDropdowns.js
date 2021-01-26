@@ -10,7 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
-import {findTitleFromAlias} from "../../utils/Utils";
+import {findTitleFromAlias, toTitleCase} from "../../utils/Utils";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -41,7 +41,7 @@ const MenuProps = {
   },
 };
 
-function SearchDropdowns(props) {
+export default function SearchDropdowns(props) {
   const classes = useStyles();
 
   const keys = Object.keys(props.dropdown);
@@ -53,7 +53,7 @@ function SearchDropdowns(props) {
         if (props["dropdown"][key]["type"] === "multiple") {
           return (
             <FormControl className={classes.formControl}>
-              <InputLabel id={key + "label"}>{key}</InputLabel>
+              <InputLabel id={key + "label"}>{toTitleCase(key)}</InputLabel>
               <Select
                 labelId={key + "label"}
                 id={key}
@@ -101,7 +101,7 @@ function SearchDropdowns(props) {
         } else {
           return (
             <FormControl className={classes.formControl}>
-              <InputLabel id={key + "label"}>{key}</InputLabel>
+              <InputLabel id={key + "label"}>{toTitleCase(key)}</InputLabel>
               <Select
                 labelId={key + "label"}
                 id={key}
@@ -136,5 +136,3 @@ function SearchDropdowns(props) {
     </div>
   );
 }
-
-export default SearchDropdowns;

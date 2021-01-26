@@ -3,10 +3,11 @@ import GenericButton from "../GenericButton/GenericButton";
 import React from "react";
 import {Link} from "react-router-dom";
 
-function RestaurantCard(props) {
+export default function RestaurantCard(props) {
   const {
     alias,
     name,
+    price,
     image_url,
     neighborhood,
     rating,
@@ -48,6 +49,7 @@ function RestaurantCard(props) {
       </div>
       <div>{neighborhood}</div>
       <div>{rating}</div>
+      <div>{price}</div>
       <div>{cat_titles.join(", ")}</div>
       <div>
         <a target="_blank" rel="noreferrer" href={url}>
@@ -73,5 +75,3 @@ function RestaurantCard(props) {
     </div>
   );
 }
-
-export default RestaurantCard;

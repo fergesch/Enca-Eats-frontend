@@ -8,7 +8,7 @@ export function toggleUserInteraction(restaurant, type) {
     upsertUserInteraction({...restaurant.userInteractions});
 }
 
-function upsertUserInteraction(userInteraction) {
+export function upsertUserInteraction(userInteraction) {
     API
         .post("/userInteractions", userInteraction)
         .catch(function (error) {

@@ -36,3 +36,15 @@ export function findTitleFromAlias(array, value) {
   }
   return null;
 }
+
+export function toTitleCase(str) {
+  let arr = str.split('_');
+  let arr2 = [];
+  arr.map((n, index) => {
+    arr2[index] = n.charAt(0).toUpperCase() + n.substr(1).toLowerCase();
+    return true;
+  })
+  console.log(arr)
+  console.log(arr2)
+  return arr2.join(' ');
+}

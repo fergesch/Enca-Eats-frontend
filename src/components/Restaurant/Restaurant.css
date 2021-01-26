@@ -1,9 +1,10 @@
 .image{
     height: 200px;
     width: 200px;
+    padding: 10px;
 }
 
-.restaurant{
+.restaurant-info{
     display:flex;
     flex-direction:row;
     line-height: 0.8;
@@ -13,5 +14,9 @@
     height: 25px;
     width: 25px;
     fill: "blue";
+    fill: blue;
 }
 
+.notes {
+    padding: 10px;
+}
