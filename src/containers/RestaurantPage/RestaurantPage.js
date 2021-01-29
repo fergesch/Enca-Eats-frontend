@@ -58,9 +58,6 @@ class RestaurantPage extends Component {
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .then(function () {
-        // always executed
       });
   }
 
@@ -108,7 +105,6 @@ class RestaurantPage extends Component {
     newNote.datetime = Date.now();
     this.setState({newNote: newNote});
 
-    console.log(event);
   };
 
   newNoteSubmitHandler = () => {

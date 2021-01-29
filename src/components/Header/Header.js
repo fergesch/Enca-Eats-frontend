@@ -3,14 +3,13 @@ import {Link} from 'react-router-dom';
 import './Header.css';
 
 
-function Header() {
+export default function Header() {
     return (
         <div>
             <header className="NavHeader">
                 <nav>
                     <ul>
                         <li><Link className="header" to="/">Home</Link></li>
-                        <li><Link className="header" to="/restaurant">Restaurant</Link></li>
                         <li><Link className="header" to="/account">Account</Link></li>
                     </ul>
                 </nav>
@@ -18,5 +17,3 @@ function Header() {
         </div>
     );
 }
-
-export default Header;

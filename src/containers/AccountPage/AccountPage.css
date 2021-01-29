@@ -7,8 +7,13 @@
 
 .container {
     width: 100%;
+    height: 100%;
     position: absolute;
     border-spacing:10px;
+}
+
+.row {
+    height: 50%;
 }
 
 .box {
@@ -19,6 +24,7 @@
     font-size: 20px;
     text-align: center;
     margin: 10px;
+    overflow:auto;
 }
 
 .box > p {

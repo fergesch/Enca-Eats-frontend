@@ -17,7 +17,6 @@ class AccountPage extends Component {
         API
             .get("/userInteractions")
             .then(response => {
-                console.log(response.data);
                 this.setState({userInteractions: response.data});
             })
             .catch(function (error) {

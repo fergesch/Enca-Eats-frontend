@@ -113,7 +113,6 @@ class SearchPage extends Component {
   };
 
   handleDelete = (event) => {
-    console.log("Delete Clicked");
     const target = event.target;
     const key = target.key;
     const name = target.name;
@@ -182,9 +181,6 @@ class SearchPage extends Component {
           console.log(error);
           alert("No restaurants found. Try again :(")
         })
-        .then(function () {
-          // always executed
-        });
     }
     return true;
   };

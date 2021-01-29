@@ -4,17 +4,10 @@
     padding: 10px;
 }
 
-.restaurant-info{
+.restaurant-info {
     display:flex;
     flex-direction:row;
     line-height: 0.8;
-}
-
-.toggles{
-    height: 25px;
-    width: 25px;
-    fill: "blue";
-    fill: blue;
 }
 
 .notes {

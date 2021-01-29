@@ -15,9 +15,8 @@ export default function RestaurantCard(props) {
     categories,
     userInteractions,
   } = props.restaurant;
-  const {wish_list, notes, visited} = userInteractions;
+  const {wish_list, visited} = userInteractions;
 
-  console.log(notes)
 
   let cat_titles = categories.map((cat) => {
     return cat.title;

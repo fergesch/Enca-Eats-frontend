@@ -44,7 +44,5 @@ export function toTitleCase(str) {
     arr2[index] = n.charAt(0).toUpperCase() + n.substr(1).toLowerCase();
     return true;
   })
-  console.log(arr)
-  console.log(arr2)
   return arr2.join(' ');
 }
