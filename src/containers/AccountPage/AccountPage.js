@@ -1,23 +1,12 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./AccountPage.css";
 import API from '../../utils/Api';
 import AccountRestaurant from "../../components/AccountRestaurant/AccountRestaurant";
 
-// Msal imports
-// import { MsalAuthenticationTemplate, MsalContext } from "@azure/msal-react";
-// import { InteractionType } from "@azure/msal-browser";
-// import { loginRequest } from "../../authConfig";
-
-// import { callMsGraph } from "../../utils/MsGraphApiCall";
-
-// import { useIsAuthenticated } from "@azure/msal-react";
-
-
 class AccountPage extends Component {
 
-    // static contextType = MsalContext;
-
     state = {
+        account: null,
         userInteractions: {
             wish_list: [],
             notes: [],
@@ -26,10 +15,15 @@ class AccountPage extends Component {
     }
 
     componentDidMount() {
+        //want to do multi request promise like SearchPage
+        //request for account and userinteractions
         API
             .get("/userInteractions")
             .then(response => {
-                this.setState({userInteractions: response.data});
+                this.setState({
+                    // account: set to user data from response,
+                    userInteractions: response.data
+                });
             })
             .catch(function (error) {
                 console.log(error);

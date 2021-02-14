@@ -8,8 +8,9 @@ export const SignInButton = (props) => {
     const handleLogin = () => {
 
             instance.loginPopup().then(response => {
-                // sessionStorage.setItem('logInResponse', JSON.stringify(response))
-                props.setAccount(response)
+                sessionStorage.setItem('logInResponse', JSON.stringify(response.account))
+                window.location.reload();
+                // props.setAccount(response)
             });
     }
 
