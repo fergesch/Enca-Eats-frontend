@@ -42,7 +42,7 @@ class App extends Component {
       <BrowserRouter>
         <MsalProvider instance={this.props.pca}>
           <div>
-            <Header setAccount={this.setAccount}/>
+            <Header />
 
             <AuthenticatedTemplate>
             <Route exact path='/' component={SearchPage} />

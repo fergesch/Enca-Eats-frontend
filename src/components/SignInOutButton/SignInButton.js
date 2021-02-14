@@ -2,7 +2,7 @@ import { useMsal } from "@azure/msal-react";
 import Button from "@material-ui/core/Button";
 
 
-export const SignInButton = (props) => {
+export const SignInButton = () => {
     const { instance } = useMsal();
 
     const handleLogin = () => {

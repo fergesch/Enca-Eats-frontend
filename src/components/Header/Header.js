@@ -4,7 +4,7 @@ import './Header.css';
 
 import SignInSignOutButton from "../SignInOutButton/SignInSignOutButton";
 
-export default function Header(props) {
+export default function Header() {
     return (
         <div>
             <header className="NavHeader">
@@ -12,7 +12,7 @@ export default function Header(props) {
                     <ul>
                         <li><Link className="header" to="/">Home</Link></li>
                         <li><Link className="header" to="/account">Account</Link></li>
-                        <li><SignInSignOutButton setAccount={props.setAccount}/></li>
+                        <li><SignInSignOutButton /></li>
                     </ul>
                 </nav>
             </header>
