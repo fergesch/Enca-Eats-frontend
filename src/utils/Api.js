@@ -5,5 +5,6 @@ export default axios.create({
     headers: {
         // 'Content-Type': null,
         "Access-Control-Allow-Origin": "*",
-      }
-  });
+        "User-Email": sessionStorage.getItem('logInResponse') ? JSON.parse(sessionStorage.getItem('logInResponse')).username : null
+    }
+});

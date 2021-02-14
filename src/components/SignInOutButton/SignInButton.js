@@ -1,0 +1,28 @@
+import { useMsal } from "@azure/msal-react";
+import Button from "@material-ui/core/Button";
+
+
+export const SignInButton = () => {
+    const { instance } = useMsal();
+
+    const handleLogin = () => {
+
+            instance.loginPopup().then(response => {
+                sessionStorage.setItem('logInResponse', JSON.stringify(response.account))
+                window.location.reload();
+                // props.setAccount(response)
+            });
+    }
+
+    return (
+        <div>
+            <Button
+                onClick={() => handleLogin()}
+                color="inherit"
+            >
+                Login
+            </Button>
+
+        </div>
+    )
+};
