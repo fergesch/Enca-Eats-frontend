@@ -3,7 +3,19 @@ import "./AccountPage.css";
 import API from '../../utils/Api';
 import AccountRestaurant from "../../components/AccountRestaurant/AccountRestaurant";
 
+// Msal imports
+// import { MsalAuthenticationTemplate, MsalContext } from "@azure/msal-react";
+// import { InteractionType } from "@azure/msal-browser";
+// import { loginRequest } from "../../authConfig";
+
+// import { callMsGraph } from "../../utils/MsGraphApiCall";
+
+// import { useIsAuthenticated } from "@azure/msal-react";
+
+
 class AccountPage extends Component {
+
+    // static contextType = MsalContext;
 
     state = {
         userInteractions: {
