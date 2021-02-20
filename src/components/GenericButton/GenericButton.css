@@ -3,4 +3,7 @@
     width: 25px;
     color: cornflowerblue;
     padding: 5px;
+    text-align: center;
+    display:block;
+    margin: auto;
 }

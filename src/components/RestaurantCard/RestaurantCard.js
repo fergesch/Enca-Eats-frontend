@@ -14,6 +14,7 @@ export default function RestaurantCard(props) {
     url,
     categories,
     userInteractions,
+    location,
   } = props.restaurant;
   const {wish_list, visited} = userInteractions;
 
@@ -46,7 +47,12 @@ export default function RestaurantCard(props) {
           {name}
         </Link>
       </div>
-      <div>{neighborhood}</div>
+      <div>
+        <p>{neighborhood}</p>
+        {location.display_address.map((line, index) => (
+            <p className="address">{line}</p>
+        ))}
+      </div>
       <div>{rating}</div>
       <div>{price}</div>
       <div>{cat_titles.join(", ")}</div>
@@ -62,7 +68,7 @@ export default function RestaurantCard(props) {
           bool={wish_list.bool}
           toggleHandler={props.toggleHandler}
         />
-      </div>
+      </div>  
       <div>
         <GenericButton
           index={props.index}
@@ -70,7 +76,7 @@ export default function RestaurantCard(props) {
           bool={visited.bool}
           toggleHandler={props.toggleHandler}
         />
-      </div>
+        </div>
     </div>
   );
 }
