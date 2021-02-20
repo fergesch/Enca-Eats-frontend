@@ -13,7 +13,9 @@ export default function Restaurant(props) {
     userInteractions,
     location,
   } = props.restaurant;
-  const {wish_list, notes, visited} = userInteractions;
+  let {wish_list, notes, visited} = userInteractions;
+
+  notes.sort((a,b) => b.datetime - a.datetime)
 
   let cat_titles = categories.map((cat) => {
     return cat.title;
