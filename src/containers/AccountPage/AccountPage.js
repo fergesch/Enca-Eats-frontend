@@ -6,7 +6,10 @@ import AccountRestaurant from "../../components/AccountRestaurant/AccountRestaur
 class AccountPage extends Component {
 
     state = {
-        account: null,
+        account: {
+            email: '',
+            name: ''
+        },
         userInteractions: {
             wish_list: [],
             notes: [],
@@ -17,17 +20,19 @@ class AccountPage extends Component {
     componentDidMount() {
         //want to do multi request promise like SearchPage
         //request for account and userinteractions
-        API
-            .get("/userInteractions")
-            .then(response => {
-                this.setState({
-                    // account: set to user data from response,
-                    userInteractions: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        function getAccount() {
+            return API.get("/user");
+          }
+      
+          function getUserInteractions() {
+            return API.get("/userInteractions");
+          }
+        Promise.all([getAccount(), getUserInteractions()]).then((results) => {
+            const account = results[0].data;
+            const userInteractions = results[1].data;
+      
+            this.setState({account: account, userInteractions: userInteractions});
+          });
     }
 
     render() {
@@ -35,10 +40,8 @@ class AccountPage extends Component {
             <div className="container">
                 <div className="row">
                     <div className="box">Info
-                        <p>Erica</p>
-                        <p>525 W Oakdale Ave</p>
-                        <p>Chicago, IL</p>
-                        <p>60657</p>
+                        <p>{this.state.account.name}</p>
+                        <p>{this.state.account.email}</p>
                     </div>
 
                     <div className="box">Wish List

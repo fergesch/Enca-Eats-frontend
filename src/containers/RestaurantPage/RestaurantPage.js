@@ -29,7 +29,7 @@ class RestaurantPage extends Component {
       distance: null,
       neighborhood: "",
       userInteractions: {
-        user_id: "",
+        email: "",
         rest_alias: "",
         wish_list: {datetime: null, bool: null},
         visited: {datetime: null, bool: null},
@@ -54,6 +54,7 @@ class RestaurantPage extends Component {
       params: param_map,
     })
       .then((response) => {
+        
         this.setState({restaurants: response.data});
       })
       .catch(function (error) {
