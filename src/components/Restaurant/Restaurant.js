@@ -21,6 +21,13 @@ export default function Restaurant(props) {
     return cat.title;
   });
 
+  let address = "";
+  if(location.display_address) {
+    address = location.display_address.map((line, index) => (
+            <p className="address">{line}</p>
+        ))
+  }
+
   return (
     <div className="restaurantPage">
       <div className="restaurant-info">
@@ -28,10 +35,8 @@ export default function Restaurant(props) {
         <div>
           <h1>{name}</h1>
           <div>
-            <p>{neighborhood}</p>
-            {/* {location.display_address.map((line, index) => (
-              <p className="address">{line}</p>
-            ))} */}
+            <p>{neighborhood}</p> 
+            {address}
           </div>
           <p>Yelp Rating: {rating}</p>
           <p>Categories: {cat_titles.join(", ")}</p>
