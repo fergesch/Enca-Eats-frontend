@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "./AccountPage.css";
-import API from '../../utils/Api';
+import API from "../../utils/Api";
 import AccountRestaurant from "../../components/AccountRestaurant/AccountRestaurant";
 
 class AccountPage extends Component {
-
     state = {
         account: {
             email: '',
@@ -16,7 +15,6 @@ class AccountPage extends Component {
             visited: []
         }
     }
-
     componentDidMount() {
         //want to do multi request promise like SearchPage
         //request for account and userinteractions
@@ -72,7 +70,6 @@ class AccountPage extends Component {
         )
 
     }
-
 }
 
-export default AccountPage
+export default AccountPage;

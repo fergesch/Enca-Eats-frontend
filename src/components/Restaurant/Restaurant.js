@@ -11,6 +11,7 @@ export default function Restaurant(props) {
     url,
     categories,
     userInteractions,
+    location,
   } = props.restaurant;
   let {wish_list, notes, visited} = userInteractions;
 
@@ -20,13 +21,23 @@ export default function Restaurant(props) {
     return cat.title;
   });
 
+  let address = "";
+  if(location.display_address) {
+    address = location.display_address.map((line, index) => (
+            <p className="address">{line}</p>
+        ))
+  }
+
   return (
     <div className="restaurantPage">
       <div className="restaurant-info">
         <img alt="yelpPic" className="image" src={image_url} />
         <div>
           <h1>{name}</h1>
-          <p>{neighborhood}</p>
+          <div>
+            <p>{neighborhood}</p> 
+            {address}
+          </div>
           <p>Yelp Rating: {rating}</p>
           <p>Categories: {cat_titles.join(", ")}</p>
           <a target="_blank" rel="noreferrer" href={url}>
