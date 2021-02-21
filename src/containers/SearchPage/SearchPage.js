@@ -73,6 +73,10 @@ class SearchPage extends Component {
   };
 
   componentDidMount() {
+    if(this.props.history.location.state) {
+      this.setState(this.props.history.location.state)
+    }
+    else {
     let dropdown = {...this.state.dropdown};
 
     function getNeighborhoods() {
@@ -91,6 +95,7 @@ class SearchPage extends Component {
 
       this.setState({dropdown: dropdown});
     });
+    }
   }
 
   toggleHandler = (type, i) => {
@@ -157,6 +162,8 @@ class SearchPage extends Component {
       this.setState({
         restaurants: rest_all,
         restaurants_display: rest_disp,
+      }, () => {
+        this.props.history.push("/", this.state);
       });
     } else {
       this.setState({filters: param_map});
@@ -172,11 +179,13 @@ class SearchPage extends Component {
             rest_disp[rest_disp.length] = rest_all.splice(rand, 1)[0];
           }
 
-          this.setState({
-            restaurants: rest_all,
-            restaurants_display: rest_disp,
-          });
-        })
+        this.setState({
+          restaurants: rest_all,
+          restaurants_display: rest_disp,
+        }, () => {
+          this.props.history.push("/", this.state);
+        });        
+      })
         .catch(function (error) {
           console.log(error);
           alert("No restaurants found. Try again :(")
@@ -205,4 +214,5 @@ class SearchPage extends Component {
   }
 }
 
+//const SearchPageWithRouter = withRouter(SearchPage)
 export default SearchPage;
