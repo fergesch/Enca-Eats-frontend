@@ -23,7 +23,6 @@ export default function Map(props) {
                             <a target="_blank" rel="noreferrer" href={map_url}>
                                 {name} <br /> {disp_add}
                             </a>
-
                         </Popup>
                     </Marker>
                 </MapContainer>

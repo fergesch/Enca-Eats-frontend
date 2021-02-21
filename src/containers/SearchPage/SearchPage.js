@@ -1,10 +1,10 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import SearchResults from "../../components/SearchResults/SearchResults";
 import SearchDropdowns from "../../components/SearchDropdowns/SearchDropdowns";
 import API from "../../utils/Api";
-import {sortString, isObjEqual} from "../../utils/Utils";
-import {toggleUserInteraction} from "../../utils/ChangeHandlers";
+import { sortString, isObjEqual } from "../../utils/Utils";
+import { toggleUserInteraction } from "../../utils/ChangeHandlers";
 import "./SearchPage.css";
 
 class SearchPage extends Component {
@@ -25,46 +25,46 @@ class SearchPage extends Component {
       },
       rating: {
         all: [
-          {alias: "", title: ""},
-          {alias: "0", title: "0"},
-          {alias: "0.5", title: "0.5"},
-          {alias: "1", title: "1"},
-          {alias: "1.5", title: "1.5"},
-          {alias: "2", title: "2"},
-          {alias: "2.5", title: "2.5"},
-          {alias: "3", title: "3"},
-          {alias: "3.5", title: "3.5"},
-          {alias: "4", title: "4"},
-          {alias: "4.5", title: "4.5"},
-          {alias: "5", title: "5"},
+          { alias: "", title: "" },
+          { alias: "0", title: "0" },
+          { alias: "0.5", title: "0.5" },
+          { alias: "1", title: "1" },
+          { alias: "1.5", title: "1.5" },
+          { alias: "2", title: "2" },
+          { alias: "2.5", title: "2.5" },
+          { alias: "3", title: "3" },
+          { alias: "3.5", title: "3.5" },
+          { alias: "4", title: "4" },
+          { alias: "4.5", title: "4.5" },
+          { alias: "5", title: "5" },
         ],
         selected: "",
         type: "single",
       },
       wish_list: {
         all: [
-          {alias: "", title: ""},
-          {alias: "false", title: "No"},
-          {alias: "true", title: "Yes"},
+          { alias: "", title: "" },
+          { alias: "false", title: "No" },
+          { alias: "true", title: "Yes" },
         ],
         selected: "",
         type: "single",
       },
       visited: {
         all: [
-          {alias: "", title: ""},
-          {alias: "false", title: "No"},
-          {alias: "true", title: "Yes"},
+          { alias: "", title: "" },
+          { alias: "false", title: "No" },
+          { alias: "true", title: "Yes" },
         ],
         selected: "",
         type: "single",
       },
       price: {
         all: [
-          {alias: "$", title: "$"},
-          {alias: "$$", title: "$$"},
-          {alias: "$$$", title: "$$$"},
-          {alias: "$$$$", title: "$$$$"},
+          { alias: "$", title: "$" },
+          { alias: "$$", title: "$$" },
+          { alias: "$$$", title: "$$$" },
+          { alias: "$$$$", title: "$$$$" },
         ],
         selected: [],
         type: "multiple",
@@ -73,28 +73,28 @@ class SearchPage extends Component {
   };
 
   componentDidMount() {
-    if(this.props.history.location.state) {
+    if (this.props.history.location.state) {
       this.setState(this.props.history.location.state)
     }
     else {
-    let dropdown = {...this.state.dropdown};
+      let dropdown = { ...this.state.dropdown };
 
-    function getNeighborhoods() {
-      return API.get("/neighborhood");
-    }
+      function getNeighborhoods() {
+        return API.get("/neighborhood");
+      }
 
-    function getCategories() {
-      return API.get("/categories");
-    }
+      function getCategories() {
+        return API.get("/categories");
+      }
 
-    Promise.all([getNeighborhoods(), getCategories()]).then((results) => {
-      const neighborhoods = results[0].data;
-      const categories = results[1].data;
-      dropdown.neighborhoods.all = neighborhoods.sort(sortString);
-      dropdown.categories.all = categories.sort(sortString);
+      Promise.all([getNeighborhoods(), getCategories()]).then((results) => {
+        const neighborhoods = results[0].data;
+        const categories = results[1].data;
+        dropdown.neighborhoods.all = neighborhoods.sort(sortString);
+        dropdown.categories.all = categories.sort(sortString);
 
-      this.setState({dropdown: dropdown});
-    });
+        this.setState({ dropdown: dropdown });
+      });
     }
   }
 
@@ -103,7 +103,7 @@ class SearchPage extends Component {
     let restaurants = [...this.state.restaurants_display];
     let restaurant = restaurants[index];
     toggleUserInteraction(restaurant, type);
-    this.setState({restaurants_display: restaurants});
+    this.setState({ restaurants_display: restaurants });
   };
 
   handleSelectChange = (event) => {
@@ -112,9 +112,9 @@ class SearchPage extends Component {
     const value = target.value;
     const name = target.name;
 
-    let dropdown = {...this.state.dropdown};
+    let dropdown = { ...this.state.dropdown };
     dropdown[name]["selected"] = value;
-    this.setState({dropdown: dropdown});
+    this.setState({ dropdown: dropdown });
   };
 
   handleDelete = (event) => {
@@ -122,14 +122,14 @@ class SearchPage extends Component {
     const key = target.key;
     const name = target.name;
 
-    let dropdown = {...this.state.dropdown};
+    let dropdown = { ...this.state.dropdown };
 
     const index = dropdown[name]["selected"].indexOf(key);
     if (index > -1) {
       dropdown[name]["selected"].splice(index, 1);
     }
 
-    this.setState({dropdown: dropdown});
+    this.setState({ dropdown: dropdown });
   };
 
   handleSearch = () => {
@@ -166,8 +166,6 @@ class SearchPage extends Component {
         this.props.history.push("/", this.state);
       });
     } else {
-      this.setState({filters: param_map});
-
       API.get("/restaurant/search", {
         params: param_map,
       })
@@ -179,13 +177,14 @@ class SearchPage extends Component {
             rest_disp[rest_disp.length] = rest_all.splice(rand, 1)[0];
           }
 
-        this.setState({
-          restaurants: rest_all,
-          restaurants_display: rest_disp,
-        }, () => {
-          this.props.history.push("/", this.state);
-        });        
-      })
+          this.setState({
+            filters: param_map,
+            restaurants: rest_all,
+            restaurants_display: rest_disp,
+          }, () => {
+            this.props.history.push("/", this.state);
+          });
+        })
         .catch(function (error) {
           console.log(error);
           alert("No restaurants found. Try again :(")
@@ -205,14 +204,16 @@ class SearchPage extends Component {
         <Button variant="contained" color="primary" onClick={this.handleSearch}>
           Search
         </Button>
-        <SearchResults
-          restaurants={this.state.restaurants_display}
-          toggleHandler={this.toggleHandler}
-        />
+        {this.state.restaurants_display.length > 0 &&
+          <SearchResults
+            restaurants={this.state.restaurants_display}
+            toggleHandler={this.toggleHandler}
+          />
+        }
+
       </div>
     );
   }
 }
 
-//const SearchPageWithRouter = withRouter(SearchPage)
 export default SearchPage;

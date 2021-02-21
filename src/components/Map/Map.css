@@ -1,4 +1,10 @@
 .leaflet-container {
-  width: 300px;
+  min-width: 300px;
+  width: 75%;
   height: 300px;
+  border: 2px solid gray;
+}
+
+.map {
+  display: flex;
 }

@@ -1,13 +1,9 @@
 .restaurantPage {
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
-    /* text-align: center; */
-    /* width: 100%; */
+  display: flex;
+  flex-direction: column;
 }
 
-/* div {
-    align-items: center;
-    justify-content: center;
-    width: 75%;
-} */
+.restaurantPage > div {
+  justify-content: center;
+  align-items: center;
+}
