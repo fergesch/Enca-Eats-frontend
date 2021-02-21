@@ -19,6 +19,9 @@ li {
     color: #282c34;
 }
 
+.NavHeader {
+    background-color: rgba(0, 255, 200, 0.877);
+}
 
 /* .Blog a:hover,
 .Blog a:active { */

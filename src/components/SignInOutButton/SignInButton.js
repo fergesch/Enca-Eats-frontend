@@ -23,12 +23,12 @@ export const SignInButton = () => {
     return (
         <div>
             <Button
-                onClick={() => handleLogin()}
+                onClick={handleLogin}
                 color="inherit"
             >
                 Login
             </Button>
-
+{/* <button onClick={() => handleLogin()}>Login</button> */}
         </div>
     )
 };
