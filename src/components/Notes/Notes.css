@@ -1,3 +1,18 @@
 .notes {
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.newNote {
+    /* padding: 10px; */
+    min-width: 300px;
+    width:75%;
+    padding-bottom: 10px;
+    border: 2px solid gray;
+}
+
+.newNote > div {
+  display: flex;
+  justify-content: center;
 }
