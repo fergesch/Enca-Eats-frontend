@@ -77,8 +77,6 @@ class SearchPage extends Component {
       this.setState(this.props.history.location.state)
     }
     else {
-    console.log("empty state")
-    console.log(this.state);
     let dropdown = {...this.state.dropdown};
 
     function getNeighborhoods() {
