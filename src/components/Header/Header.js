@@ -12,6 +12,7 @@ export default function Header() {
                     <ul>
                         <li><Link className="header" to="/">Home</Link></li>
                         <li><Link className="header" to="/account">Account</Link></li>
+                        <li><Link className="header" to="/find-restaurant">Find</Link></li>
                         <li><SignInSignOutButton /></li>
                     </ul>
                 </nav>
