@@ -6,6 +6,7 @@ import Header from '../components/Header/Header';
 import SearchPage from './SearchPage/SearchPage';
 import RestaurantPage from './RestaurantPage/RestaurantPage';
 import AccountPage from './AccountPage/AccountPage';
+import FindRestaurantPage from './FindRestaurantPage/FindRestaurantPage'
 import { BrowserRouter, Route } from 'react-router-dom';
 
 // MSAL imports
@@ -26,6 +27,8 @@ class App extends Component {
               <Route exact path='/' component={SearchPage} />
               <Route exact path='/restaurant' component={RestaurantPage} />
               <Route exact path='/account' component={AccountPage} />
+              <Route exact path='/find-restaurant' component={FindRestaurantPage} />
+
 
             </AuthenticatedTemplate>
 
