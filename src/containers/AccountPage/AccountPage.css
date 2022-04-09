@@ -1,8 +1,9 @@
 .row {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
+    /* width: 100%; */
     border-spacing:10px;
-
+    /* height: 50% */
 }
 
 .container {
@@ -12,12 +13,10 @@
     border-spacing:10px;
 }
 
-.row {
-    height: 50%;
-}
 
 .box {
-    width: 50%;
+    width: 650px;
+    max-height: 350px;
     border: 2px solid gray;
     padding: 5px;
     font-weight: bold;
